@@ -7,8 +7,8 @@ import (
 
 func getAllDicts() *[]dict.Dict {
 	return &[]dict.Dict{
-		new(dict.Cambridge),
-		new(dict.FreeDictionary),
+		dict.NewCambridge(),
+		dict.NewFreeDictionary(),
 	}
 }
 

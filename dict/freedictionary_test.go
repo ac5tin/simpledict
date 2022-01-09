@@ -6,6 +6,14 @@ func TestFreeDictionaryImplementation(t *testing.T) {
 	var _ Dict = (*FreeDictionary)(nil)
 	var _ Dict = &FreeDictionary{}
 	var _ Dict = new(FreeDictionary)
+
+	fd := NewFreeDictionary()
+	if fd.GetName() == nil {
+		t.Error("GetName() should not return nil")
+	}
+	if *fd.GetName() != "FreeDictionary" {
+		t.Errorf("expected FreeDictionary.GetName() to return 'FreeDictionary', got %s", *fd.GetName())
+	}
 	t.Log("FreeDictionary successfully implements Dict interface")
 }
 

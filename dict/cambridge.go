@@ -11,6 +11,14 @@ type Cambridge struct {
 	*dict
 }
 
+func NewCambridge() *Cambridge {
+	return &Cambridge{
+		dict: &dict{
+			Name: "Cambridge",
+		},
+	}
+}
+
 func (d *Cambridge) GetDefinition(s *string) (*Result, error) {
 	results := new(Result)
 	// scrape using colly

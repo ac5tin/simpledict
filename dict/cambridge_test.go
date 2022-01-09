@@ -6,6 +6,16 @@ func TestCambridgeImplementation(t *testing.T) {
 	var _ Dict = (*Cambridge)(nil)
 	var _ Dict = &Cambridge{}
 	var _ Dict = new(Cambridge)
+
+	cb := NewCambridge()
+	if cb.GetName() == nil {
+		t.Error("GetName() should not return nil")
+	}
+
+	if *cb.GetName() != "Cambridge" {
+		t.Errorf("expected Cambridge.GetName() to return 'Cambridge', got %s", *cb.GetName())
+	}
+
 	t.Log("Cambridge successfully implements Dict interface")
 }
 

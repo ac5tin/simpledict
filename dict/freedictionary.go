@@ -11,6 +11,14 @@ type FreeDictionary struct {
 	*dict
 }
 
+func NewFreeDictionary() *FreeDictionary {
+	return &FreeDictionary{
+		dict: &dict{
+			Name: "FreeDictionary",
+		},
+	}
+}
+
 func (d *FreeDictionary) GetDefinition(s *string) (*Result, error) {
 	req, err := http.NewRequest("GET", fmt.Sprintf("https://api.dictionaryapi.dev/api/v2/entries/en/%s", *s), nil)
 	if err != nil {
