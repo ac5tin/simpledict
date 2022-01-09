@@ -1,16 +1,21 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os"
 )
 
 func main() {
 	args := os.Args
-	if len(args) != 2 {
+	if len(args) < 2 {
 		os.Exit(1)
 	}
-	word := args[1]
+	word := args[len(args)-1]
+
+	// flags
+	syn := flag.Bool("syn", false, "show synonyms")
+	flag.Parse()
 
 	// run all dicts
 	{
@@ -22,7 +27,7 @@ func main() {
 			}
 			fmt.Println("==========================================================")
 			fmt.Printf("Source: %s\n", *d.GetName())
-			printResult(r)
+			printResult(r, syn)
 			fmt.Println("==========================================================")
 		}
 	}

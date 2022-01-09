@@ -16,13 +16,17 @@ func runDict(word *string, d *dict.Dict) (*dict.Result, error) {
 	return (*d).GetDefinition(word)
 }
 
-func printResult(r *dict.Result) {
+func printResult(r *dict.Result, syn *bool) {
 	fmt.Println("Definitions :")
 	for _, d := range r.Definition {
 		fmt.Printf("%s\n", d)
 	}
-	fmt.Println("Synonyms :")
-	for _, s := range r.Synonyms {
-		fmt.Printf("%s\n", s)
+
+	if *syn {
+		fmt.Println("Synonyms :")
+		for _, s := range r.Synonyms {
+			fmt.Printf("%s\n", s)
+		}
 	}
+
 }
