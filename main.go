@@ -21,6 +21,7 @@ func main() {
 				continue
 			}
 			fmt.Println("==========================================================")
+			fmt.Printf("Source: %s\n", *d.GetName())
 			printResult(r)
 			fmt.Println("==========================================================")
 		}
