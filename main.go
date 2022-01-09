@@ -4,6 +4,8 @@ import (
 	"flag"
 	"fmt"
 	"os"
+
+	"github.com/fatih/color"
 )
 
 func printUsage() {
@@ -30,10 +32,10 @@ func main() {
 			if err != nil {
 				continue
 			}
-			fmt.Println("==========================================================")
-			fmt.Printf("Source: %s\n", *d.GetName())
+			c := color.New(color.BgHiGreen, color.FgBlack, color.Underline)
+			c.Printf("Source: %s\n", *d.GetName())
 			printResult(r, syn)
-			fmt.Println("==========================================================")
+			fmt.Println("")
 		}
 	}
 }

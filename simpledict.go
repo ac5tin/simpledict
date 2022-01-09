@@ -1,8 +1,9 @@
 package main
 
 import (
-	"fmt"
 	"simpledict/dict"
+
+	"github.com/fatih/color"
 )
 
 func getAllDicts() *[]dict.Dict {
@@ -17,15 +18,21 @@ func runDict(word *string, d *dict.Dict) (*dict.Result, error) {
 }
 
 func printResult(r *dict.Result, syn *bool) {
-	fmt.Println("Definitions :")
-	for _, d := range r.Definition {
-		fmt.Printf("%s\n", d)
+	{
+		c := color.New(color.BgHiMagenta, color.Underline)
+		c.Println("Definitions :")
+		c = color.New(color.FgHiMagenta)
+		for _, d := range r.Definition {
+			c.Printf("%s\n", d)
+		}
 	}
 
 	if *syn {
-		fmt.Println("Synonyms :")
+		c := color.New(color.BgHiCyan, color.FgBlack, color.Underline)
+		c.Println("Synonyms :")
+		c = color.New(color.FgHiCyan)
 		for _, s := range r.Synonyms {
-			fmt.Printf("%s\n", s)
+			c.Printf("%s\n", s)
 		}
 	}
 
