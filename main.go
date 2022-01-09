@@ -6,9 +6,14 @@ import (
 	"os"
 )
 
+func printUsage() {
+	fmt.Println("Usage: simpledict [flags] <word>")
+}
+
 func main() {
 	args := os.Args
 	if len(args) < 2 {
+		printUsage()
 		os.Exit(1)
 	}
 	word := args[len(args)-1]
