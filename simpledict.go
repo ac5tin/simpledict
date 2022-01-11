@@ -10,6 +10,7 @@ func getAllDicts() *[]dict.Dict {
 	return &[]dict.Dict{
 		dict.NewCambridge(),
 		dict.NewFreeDictionary(),
+		dict.NewVocabulary(),
 	}
 }
 
