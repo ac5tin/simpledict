@@ -24,6 +24,9 @@ func printResult(r *dict.Result, syn *bool) {
 		c.Println("Definitions :")
 		c = color.New(color.FgHiMagenta)
 		for _, d := range r.Definition {
+			if d == "" {
+				continue
+			}
 			c.Printf("%s\n", d)
 		}
 	}
@@ -33,6 +36,9 @@ func printResult(r *dict.Result, syn *bool) {
 		c.Println("Synonyms :")
 		c = color.New(color.FgHiCyan)
 		for _, s := range r.Synonyms {
+			if s == "" {
+				continue
+			}
 			c.Printf("%s\n", s)
 		}
 	}
