@@ -4,6 +4,8 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"simpledict/dict"
+	"sync"
 
 	"github.com/fatih/color"
 )
@@ -27,15 +29,35 @@ func main() {
 	// run all dicts
 	{
 		dicts := getAllDicts()
-		for _, d := range *dicts {
-			r, err := runDict(&word, &d)
-			if err != nil {
-				continue
-			}
+
+		// results := make(map[*string]*dict.Result) // store results used for final printing
+		wg := new(sync.WaitGroup)
+		for i := range *dicts {
+			wg.Add(1)
+			go func(d *dict.Dict) {
+				defer wg.Done()
+				r, err := runDict(&word, d)
+				if err != nil {
+					return
+				}
+				// results[(*d).GetName()] = r // final printing
+
+				c := color.New(color.BgHiGreen, color.FgBlack, color.Underline)
+				c.Printf("Source: %s\n", *(*d).GetName())
+				printResult(r, syn)
+				fmt.Println("")
+			}(&(*dicts)[i])
+
+		}
+		wg.Wait()
+
+		/* final printing
+		for name, r := range results {
 			c := color.New(color.BgHiGreen, color.FgBlack, color.Underline)
-			c.Printf("Source: %s\n", *d.GetName())
+			c.Printf("Source: %s\n", *name)
 			printResult(r, syn)
 			fmt.Println("")
 		}
+		*/
 	}
 }
