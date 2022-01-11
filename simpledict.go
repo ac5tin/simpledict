@@ -27,7 +27,7 @@ func printResult(r *dict.Result, syn *bool) {
 			if d == "" {
 				continue
 			}
-			c.Printf("%s\n", d)
+			c.Printf("> %s\n", d)
 		}
 	}
 
@@ -39,7 +39,7 @@ func printResult(r *dict.Result, syn *bool) {
 			if s == "" {
 				continue
 			}
-			c.Printf("%s\n", s)
+			c.Printf("- %s\n", s)
 		}
 	}
 
